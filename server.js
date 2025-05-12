@@ -185,7 +185,7 @@ app.post('/tweak', async (req, res) => {
 });
 
 // Start the server
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`✅ ChloeBot backend running at http://localhost:${PORT}`);
 });
