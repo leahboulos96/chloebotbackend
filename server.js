@@ -10,6 +10,11 @@ const app = express();
 app.use(cors({ origin: "http://localhost:5173", methods: ["GET", "POST"] }));
 app.use(express.json());
 
+// Root route for checking backend status
+app.get('/', (req, res) => {
+  res.send('ChloeBot Backend is running!'); // Confirming the backend is running
+});
+
 // OpenAI setup
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
@@ -37,7 +42,7 @@ app.post('/generate', async (req, res) => {
         {
           role: "system",
           content: `You are a professional mining trade journalist writing Australian-style advertorials for a leading mining industry publication.
-
+          
 STRICT STYLE RULES:
 - Do NOT use vague or cliched phrases (e.g. "in the ever-changing landscape", "revolutionising the sector", "game-changer", "cutting-edge").
 - DO start articles with a clear, fact-based lead or concrete development — never abstract commentary.
